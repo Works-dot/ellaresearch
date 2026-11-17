@@ -1,0 +1,16 @@
+{
+  "name": "ellaresearch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Az Ella bemutatkozo oldala (ellaresearch.com) — statikus, nulla fuggosegu oldal.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node epit.mjs",
+    "ellenoriz": "node epit.mjs --ellenoriz",
+    "start": "node szerver.mjs",
+    "fel": "node epit.mjs && node szerver.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

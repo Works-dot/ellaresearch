@@ -1,0 +1,103 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   TOKENEK — ellaresearch.com
+   ════════════════════════════════════════════════════════════════════════════
+
+   EZ TUDATOS MÁSOLAT. A forrás az Ella `ella-shell/public/tokens.css`-e (a Works-piros és a
+   Carbon-szürkék onnan, változatlan értékkel). MIÉRT MÁSOLAT, nem közös fájl: ez az oldal külön
+   kódtárban él, és a két kódtárnak szándékosan NINCS közös kódja (D17 — a bemutatkozó oldal nem
+   tartozik egyik Ella-példányhoz sem).
+
+   ⚠ HA AZ ELLA MÁRKASZÍNE VAGY SZÜRKE-LÉTRÁJA VÁLTOZIK, EZT A FÁJLT KÉZZEL KELL UTÁNA ÁLLÍTANI.
+   Gépi őr erre nincs: a két kódtár nem látja egymást.
+
+   Színt és méretet a lapok CSAK innen vehetnek (`var(--*)`) — beégetett érték nincs.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* — Szürke-létra: Carbon-értékek (az Ella tokens.css-éből) — */
+  --p-white: #ffffff;
+  --p-gray-10: #f4f4f4;
+  --p-gray-20: #e0e0e0;
+  --p-gray-30: #c6c6c6;
+  --p-gray-40: #a8a8a8;
+  --p-gray-60: #6f6f6f;
+  --p-gray-70: #525252;
+  --p-gray-80: #393939;
+  --p-gray-100: #161616;
+
+  /* — Márka: Works-piros. NEM Carbon-szín; nagyobb szám = sötétebb — */
+  --p-brand-10: #fde8ec;
+  --p-brand-20: #f7c5d0;
+  --p-brand-60: #e73352;
+  --p-brand-70: #d9304d;
+  --p-brand-80: #b3283f;
+
+  /* — Figyelmeztető sárga: a helykitöltő-jelöléshez (Carbon yellow10/50) — */
+  --p-yellow-10: #fcf4d6;
+  --p-yellow-50: #b28600;
+
+  /* ———— szerep-tokenek: ezeket fogyasztja a stíluslap ———— */
+
+  --brand: var(--p-brand-60);
+  --brand-hover: var(--p-brand-70);
+  --brand-active: var(--p-brand-80);
+  --brand-soft: var(--p-brand-10);
+  --brand-soft-border: var(--p-brand-20);
+
+  --text: var(--p-gray-100);
+  --text-2: var(--p-gray-70);
+  --text-3: var(--p-gray-60);
+  --text-inv: var(--p-white);
+
+  --bg: var(--p-white);
+  --bg-halvany: var(--p-gray-10);
+  --bg-sotet: var(--p-gray-100);
+  --border: var(--p-gray-20);
+  --border-eros: var(--p-gray-30);
+  --focus: var(--brand);
+
+  /* — Helykitöltő-jelölés: EZ AZ OLDAL SAJÁT TOKENJE (az Ellában nincs megfelelője).
+       Szándékosan feltűnő: egy halvány szürke "majd beírjuk" szöveg némán kimegy élesbe. — */
+  --hk-bg: var(--p-yellow-10);
+  --hk-vonal: var(--p-yellow-50);
+
+  /* — Betű: IBM Plex Sans, SAJÁT kiszolgálásból (l. oldal.css). Google Fonts NINCS. — */
+  --betu: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  /* — Méretek: a törzs az Ella értékeivel; a NAGY címek ennek az oldalnak a sajátjai
+       (az alkalmazásban nincs „hero", ezért ott nincs mihez igazodni). — */
+  --fs-body: 1rem;        /* 16px */
+  --fs-small: 0.875rem;   /* 14px */
+  --fs-xs: 0.75rem;       /* 12px */
+  --fs-h3: 1.125rem;      /* 18px */
+  --fs-h2: 1.5rem;        /* 24px */
+  --fs-h1: 2rem;          /* 32px — lap-cím */
+  --fs-hero: 2.75rem;     /* 44px — nyitó állítás (asztali) */
+  --fs-hero-kicsi: 1.875rem; /* 30px — nyitó állítás (telefon) */
+  --fs-vezeto: 1.125rem;  /* 18px — a hero alatti vezető szöveg */
+
+  --lh-tight: 1.2;
+  --lh-cim: 1.3;
+  --lh-body: 1.5;
+  --lh-relaxed: 1.6;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 72px;
+  --sp-9: 112px;
+
+  /* — Sarok: Carbon szerint ÉLES (az Ellában is 0) — */
+  --radius: 0;
+
+  /* — Szélesség: az Ella --container-narrow / --container-read értékeivel — */
+  --container: 1120px;
+  --container-keskeny: 736px;
+  --oldal-margo: 16px;
+}

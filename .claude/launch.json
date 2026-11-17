@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ellaresearch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["szerver.mjs"],
+      "port": 4100
+    }
+  ]
+}

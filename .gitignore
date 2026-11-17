@@ -1,0 +1,9 @@
+# Az építő kimenete — nem kerül a kódtárba (a telepítés maga építi).
+dist/
+
+# Ha egyszer mégis lenne függőség (ma nincs):
+node_modules/
+
+# Gép-szemét
+.DS_Store
+Thumbs.db

@@ -1,0 +1,630 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   OLDAL-STÍLUS — ellaresearch.com
+   ════════════════════════════════════════════════════════════════════════════
+   Minden szín és méret tokenből jön (`tokens.css`) — beégetett érték nincs.
+   Telefonra épül fel, és 768 px fölött nyílik szét (így a 375 px nem utólagos javítás).
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ——— BETŰ: IBM Plex Sans, SAJÁT kiszolgálásból ———————————————————————————————
+   A fájlok az Ella `ella-shell/public/fonts/plex/` mappájából, változatlanul; a licenc a betűk
+   mellett (OFL-1.1). Az `unicode-range` értékek a telepített Carbon stíluslapjából (@carbon/styles)
+   vannak átvéve, nem kitalálva.
+   ⚠ GOOGLE FONTS ÉS BÁRMILYEN CDN TILOS (házszabály: a külső cím a látogató IP-címét harmadik
+   félnek adja ki). Csak a Latin1 és Latin2 szeletet szolgáljuk ki: a magyar és az angol szöveghez ez
+   kell. Nyíl és pipa NINCS benne — azokat ez a stíluslap rajzolja. */
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSans-Regular-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2044, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSans-Regular-Latin2.woff2") format("woff2");
+  unicode-range: U+0100-0101, U+0104-0130, U+0132-0151, U+0154-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01FA-01FF, U+0218-021B, U+0237, U+0259, U+1E80-1E85, U+1E9E, U+20A1, U+20A4, U+20A6, U+20A8-20AA, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BD, U+20BF;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSans-SemiBold-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2044, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSans-SemiBold-Latin2.woff2") format("woff2");
+  unicode-range: U+0100-0101, U+0104-0130, U+0132-0151, U+0154-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01FA-01FF, U+0218-021B, U+0237, U+0259, U+1E80-1E85, U+1E9E, U+20A1, U+20A4, U+20A6, U+20A8-20AA, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BD, U+20BF;
+}
+
+/* ——— alap ——————————————————————————————————————————————————————————————— */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--betu);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-cim);
+}
+
+h1 {
+  font-size: var(--fs-hero-kicsi);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--brand-hover);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sav {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--oldal-margo);
+}
+
+.sav.keskeny {
+  max-width: var(--container-keskeny);
+}
+
+/* Átugró link: csak fókuszban látszik. */
+.ugras {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-sotet);
+  color: var(--text-inv);
+}
+
+.ugras:focus {
+  left: 0;
+}
+
+/* ——— HELYKITÖLTŐ-JELÖLÉS ————————————————————————————————————————————————————
+   Szándékosan feltűnő. Egy halvány szürke „majd beírjuk” szöveg némán kimegy élesbe; ez nem.
+   A `node epit.mjs --ellenoriz` ugyanezeket számolja meg. */
+.hk {
+  background: var(--hk-bg);
+  box-shadow: inset 0 -2px 0 var(--hk-vonal);
+  color: var(--text-2);
+}
+
+/* ——— fejléc ——————————————————————————————————————————————————————————————— */
+
+.fej {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.fej-sav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-5);
+  min-height: 56px;
+  padding-top: var(--sp-2);
+  padding-bottom: var(--sp-2);
+}
+
+.marka {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  color: var(--text);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+.marka:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* A márkajel piros pontja — ugyanaz az elv, mint az Ella modul-fejlécében. */
+.pont {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.menu {
+  display: flex;
+  flex: 1 1 auto;
+  gap: var(--sp-4);
+  font-size: var(--fs-small);
+}
+
+.menu a {
+  padding: var(--sp-1) 0;
+  color: var(--text-2);
+}
+
+.menu a:hover {
+  color: var(--text);
+}
+
+.menu a.akt {
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--brand);
+  text-decoration: none;
+}
+
+.nyelv {
+  flex: 0 0 auto;
+  padding: var(--sp-1) var(--sp-2);
+  border: 1px solid var(--border-eros);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+}
+
+.nyelv:hover {
+  border-color: var(--text-2);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ——— hero ——————————————————————————————————————————————————————————————— */
+
+.hero {
+  padding: var(--sp-8) 0 var(--sp-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.felcim {
+  margin-bottom: var(--sp-3);
+  color: var(--brand);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 20em;
+}
+
+.vezeto {
+  max-width: 44em;
+  margin-top: var(--sp-5);
+  color: var(--text-2);
+  font-size: var(--fs-vezeto);
+  line-height: var(--lh-relaxed);
+}
+
+/* ——— szakaszok ——————————————————————————————————————————————————————————— */
+
+.szakasz {
+  padding: var(--sp-8) 0;
+}
+
+.szakasz.halvany {
+  background: var(--bg-halvany);
+}
+
+.szakasz h2 {
+  margin-bottom: var(--sp-5);
+}
+
+.szakasz-jegyzet {
+  margin-top: calc(-1 * var(--sp-3));
+  margin-bottom: var(--sp-5);
+  color: var(--text-3);
+  font-size: var(--fs-small);
+}
+
+/* kártyák */
+.kartyak {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: 1fr;
+}
+
+.kartya {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.kartya p {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-relaxed);
+}
+
+/* A kép helye — amíg nincs kép, a HELYE látszik, jelölt sávval. */
+.kep-helye {
+  margin-top: auto;
+  min-height: 96px;
+  border: 1px dashed var(--border-eros);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--bg-halvany) 0,
+    var(--bg-halvany) 8px,
+    var(--bg) 8px,
+    var(--bg) 16px
+  );
+}
+
+/* lépések */
+.lepesek {
+  display: grid;
+  gap: var(--sp-5);
+  margin: 0;
+  padding: 0;
+  grid-template-columns: 1fr;
+  list-style: none;
+  counter-reset: none;
+}
+
+.lepesek li {
+  display: grid;
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: 2px solid var(--text);
+}
+
+.lepesek .szam {
+  color: var(--brand);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+}
+
+.lepesek p {
+  color: var(--text-2);
+  font-size: var(--fs-small);
+  line-height: var(--lh-relaxed);
+}
+
+/* pontok — a jelölőt a stíluslap rajzolja (a betűnkben nincs pipa és nyíl) */
+.pontok {
+  display: grid;
+  gap: var(--sp-3);
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pontok li {
+  position: relative;
+  padding-left: var(--sp-5);
+  color: var(--text-2);
+  line-height: var(--lh-relaxed);
+}
+
+.pontok li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 10px;
+  height: 2px;
+  background: var(--brand);
+}
+
+.pontok-nem li::before {
+  background: var(--border-eros);
+}
+
+.ket-hasab {
+  display: grid;
+  gap: var(--sp-7);
+  grid-template-columns: 1fr;
+}
+
+.ket-hasab h2 {
+  margin-bottom: var(--sp-3);
+}
+
+.ket-hasab > div > p {
+  color: var(--text-2);
+}
+
+/* GYIK — natív nyitható elem, szkript nélkül */
+.gyik {
+  border-top: 1px solid var(--border-eros);
+}
+
+.gyik details {
+  border-bottom: 1px solid var(--border-eros);
+}
+
+.gyik summary {
+  padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
+  cursor: pointer;
+  font-weight: var(--fw-semibold);
+  list-style: none;
+}
+
+.gyik summary::-webkit-details-marker {
+  display: none;
+}
+
+.gyik summary::after {
+  content: "";
+  float: right;
+  width: 10px;
+  height: 10px;
+  margin-top: 0.45em;
+  margin-right: 2px;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: rotate(45deg);
+}
+
+.gyik details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.gyik details p {
+  padding: 0 var(--sp-6) var(--sp-5) 0;
+  color: var(--text-2);
+  line-height: var(--lh-relaxed);
+}
+
+/* ——— átjáró (a lap aljának hívása) ——————————————————————————————————————— */
+
+.atjaro {
+  padding: var(--sp-8) 0;
+  background: var(--bg-sotet);
+  color: var(--text-inv);
+}
+
+.atjaro h2 {
+  margin-bottom: var(--sp-4);
+  font-size: var(--fs-h1);
+}
+
+.atjaro p {
+  max-width: 40em;
+  color: var(--p-gray-30);
+  line-height: var(--lh-relaxed);
+}
+
+.atjaro .felcim {
+  color: var(--p-brand-20);
+}
+
+.atjaro .jegyzet {
+  margin-top: var(--sp-4);
+  color: var(--p-gray-40);
+  font-size: var(--fs-small);
+}
+
+.atjaro .hk {
+  color: var(--text);
+}
+
+/* ——— gombok ——————————————————————————————————————————————————————————————— */
+
+.gombok {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+.gomb {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+}
+
+.gomb-elso {
+  background: var(--brand);
+  color: var(--text-inv);
+}
+
+.gomb-elso:hover {
+  background: var(--brand-hover);
+  color: var(--text-inv);
+  text-decoration: none;
+}
+
+.gomb-elso:active {
+  background: var(--brand-active);
+}
+
+.gomb-masodik {
+  border-color: var(--border-eros);
+  color: var(--text);
+}
+
+.gomb-masodik:hover {
+  border-color: var(--text);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Tiltott gomb: a bemutatkozás elsődleges gombjának CÉLJA még nincs eldöntve. Nem link, és
+   látszik, hogy nem az — egy `href="#"` úgy néz ki, mintha működne. */
+.gomb-tiltott {
+  border-color: var(--border-eros);
+  background: var(--hk-bg);
+  box-shadow: inset 0 -2px 0 var(--hk-vonal);
+  color: var(--text-2);
+  cursor: not-allowed;
+}
+
+/* ——— lábléc ——————————————————————————————————————————————————————————————— */
+
+.lab {
+  padding: var(--sp-6) 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-3);
+  font-size: var(--fs-small);
+}
+
+.lab-sor {
+  color: var(--text-2);
+}
+
+.lab-linkek {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.kozep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border-eros);
+}
+
+.lab-jegyzet {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-xs);
+}
+
+/* ——— a gyökér lapja (x-default) ——————————————————————————————————————————— */
+
+body.gyoker {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+}
+
+body.gyoker main {
+  padding: var(--sp-5);
+  text-align: center;
+}
+
+body.gyoker .marka {
+  justify-content: center;
+  font-size: var(--fs-h1);
+}
+
+.nyelv-lista {
+  display: grid;
+  gap: var(--sp-3);
+  margin: var(--sp-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nyelv-lista a {
+  display: block;
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid var(--border-eros);
+  color: var(--text);
+}
+
+.nyelv-lista a:hover {
+  border-color: var(--brand);
+  text-decoration: none;
+}
+
+/* ——— 768 px fölött ———————————————————————————————————————————————————————— */
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--fs-hero);
+  }
+
+  .hero {
+    padding: var(--sp-9) 0 var(--sp-8);
+  }
+
+  .szakasz {
+    padding: var(--sp-9) 0;
+  }
+
+  .kartyak.negy {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lepesek {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ket-hasab {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .atjaro {
+    padding: var(--sp-9) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .kartyak.negy {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ——— mozgás-érzékenység ——————————————————————————————————————————————————— */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
