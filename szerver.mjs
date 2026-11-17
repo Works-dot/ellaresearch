@@ -10,7 +10,7 @@
 // NYELV-FEJLÉC NÉLKÜL (tipikusan robotoknál) NEM irányítunk, hanem a gyökér `x-default` lapját adjuk:
 // egy robotot nem szabad véletlenül az egyik nyelvre terelni.
 //
-// Használat: `node szerver.mjs` — a port a `PORT`-ból (alapértelmezés 4100).
+// Használat: `node szerver.mjs` — a port a `PORT`-ból (alapértelmezés 4200).
 
 import fs from "node:fs";
 import http from "node:http";
@@ -18,7 +18,7 @@ import path from "node:path";
 import { NYELVEK, UTAK } from "./sablon/lap.mjs";
 
 const GYOKER = path.join(import.meta.dirname, "dist");
-const PORT = Number(process.env.PORT || 4100);
+const PORT = Number(process.env.PORT || 4200);
 
 const TIPUSOK = {
   ".html": "text/html; charset=utf-8",

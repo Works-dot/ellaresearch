@@ -30,11 +30,16 @@ Két lap, két nyelven:
 ```
 node epit.mjs              # ellenőriz, és kiírja a dist/-et
 node epit.mjs --ellenoriz  # csak ellenőriz és jelent, fájlt nem ír
-node szerver.mjs           # kiszolgálja a dist/-et (PORT, alapértelmezés 4100)
+node szerver.mjs           # kiszolgálja a dist/-et (PORT, alapértelmezés 4200)
 ```
 
-**A dev-port 4100** — szándékosan kívül az Ella portjain (4000 a shell, 3001–3019 a backendek,
-5173–5199 a felületek). A `dist/` nincs a kódtárban: a telepítés maga építi.
+**A dev-port 4200.** ⚠ Előtte 4100 volt — az ÜTKÖZÖTT: a 4100 az Ella shell-webjéé
+(`ella-shell/web`), és a mi szerverünk ráült. A `node dev-doctor.cjs` fogta meg az Ella oldalán
+(„IDEGEN SZOLGÁLTATÁS A PORTON"). **Az Ella foglalt portjai:** 4000 (shell), 4100 (shell-web),
+3001–3019 (backendek), 3903, 5173–5199 (felületek) — a mérvadó lista az Ella `start-ella.command`-ja.
+Ha ezt a portot változtatod, nézd meg ott.
+
+A `dist/` nincs a kódtárban: a telepítés maga építi.
 
 ## Négy szabály, amit némán el lehet rontani
 
@@ -68,7 +73,7 @@ engedi az indexelést. Indok: egy félkész oldal keresőbe kerülése nem vonha
 | `PORTAL_REGISZTRACIO` | a „Csatlakozz a panelhez" gomb célja | a HELYI shell címe — **élesben kötelező beállítani** |
 | `ELLARESEARCH_ALAP` | az oldal saját alap-címe (`canonical`, `hreflang`) | `https://ellaresearch.com` |
 | `INDEXELHETO` | `1` engedi az indexelést (csak nulla helykitöltő mellett) | nincs (zárva) |
-| `PORT` | a szerver portja | `4100` |
+| `PORT` | a szerver portja | `4200` |
 
 ⚠ **A regisztráció címe a portálon állandó legyen** (`/paneltag/regisztracio`): ez az oldal arra
 linkel, egy átnevezés némán egy 404-re vinné a kampányt. Az építő jelentése kiírja, ha a helyi
