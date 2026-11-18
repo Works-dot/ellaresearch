@@ -1,0 +1,10 @@
+# ⚠ SORVEGEK: a kodtarban MINDIG LF (2026-11-18). Windowson a git `core.autocrlf` CRLF-et csinalhat a
+# munkafaban, es az becsusszanhat a commitba — egy CRLF-es Dockerfile vagy `.sh` a linuxos buildben
+# nehezen olvashato hibaval all meg. Az Ellaban ugyanez a fajta hiba egy biztonsagi kaput NEMAN kiuritett
+# (a csomag-licenc ellenorzo CRLF-fel nulla csomagot latott) — ezert itt sem bizzuk a gep beallitasara.
+* text=auto eol=lf
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary

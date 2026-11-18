@@ -1,0 +1,7 @@
+# ⚠ A `dist` KIMARAD: a fejlesztoi gepen epult valtozat a HELYI shell cimeit tartalmazza. A kontener
+# indulaskor ujraepiti — de be se masoljuk, hogy egy elmaradt ujraepites ne a helyi linkeket szolgalja ki.
+dist
+.git
+.gitignore
+.claude
+node_modules
