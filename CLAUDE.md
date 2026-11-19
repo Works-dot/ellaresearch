@@ -79,6 +79,28 @@ engedi az indexelést. Indok: egy félkész oldal keresőbe kerülése nem vonha
 linkel, egy átnevezés némán egy 404-re vinné a kampányt. Az építő jelentése kiírja, ha a helyi
 alapérték fut.
 
+## A telepítés (Railway)
+
+Saját Railway-projekt, az Ellától teljesen külön (D17/8e). A `main`-re tolt commit magától települ.
+
+| Mi | Hol |
+|---|---|
+| Kódtár | `Works-dot/ellaresearch` |
+| Railway-projekt | a Works munkaterületen, egy környezet (`production`), egy szolgáltatás (`ellaresearch`) |
+| Nyilvános cím | `https://ellaresearch-production.up.railway.app` (a generált cím; saját domain még nincs) |
+| Titok-címke a tokenhez | `railway ellaresearch` (az Ella titok-tárában) |
+
+⚠ **A LAPOK A KONTÉNER INDULÁSAKOR ÉPÜLNEK, nem a képfájl építésekor** (`Dockerfile`). A három
+változó a KÉSZ HTML-be ég bele, a Railway viszont a szolgáltatás változóit csak kimondott `ARG`-gal
+adja át a buildnek — egy ilyen kimaradás NÉMA: a build zöld, és a kampány gombja a fejlesztői gép
+címére mutat. Induláskor a környezet mindig teljes. A képfájl építésekor csak az
+`epit.mjs --ellenoriz` fut, hogy a tartalmi hiba a buildet buktassa, ne a futó konténert.
+
+⚠ **MA A TESZT PORTÁLRA LINKEL:** a `PORTAL_REGISZTRACIO` az `ella-test.worksdot.hu`-ra áll, mert a
+Panel élesben még ki van kapcsolva (az Ella `MODULE_DISABLE`-je). **Mielőtt ez az oldal nyilvános
+lesz, át kell állítani az éles portálra** — különben a kampány egy teszt-környezetbe vinne.
+Az `INDEXELHETO` szándékosan nincs beállítva.
+
 ## A kampány-jelölő
 
 A toborzó kampányok a paneles lapra érkeznek, a regisztráció a portálon történik. A
@@ -101,6 +123,9 @@ kapukat mérd vissza: rontsd el szándékosan mindhármat, és nézd meg, hogy P
   A feltételek: sütisáv elutasítási lehetőséggel, és a mérés **csak beleegyezés után** indul
   (Consent Mode). Amíg nincs bekötve, a `szerver.mjs` CSP-je is zárja — azt is módosítani kell.
   A portálon és az Ella többi felületén **nincs** mérés.
-- **A GitHub-kódtár és a Railway-projekt** (a felhasználó hozza létre), a Dockerfile, és az
-  `ellaresearch.com` / `.hu` rákötése. Addig a Railway generált `*.up.railway.app` címe elég.
+- **Az `ellaresearch.com` / `.hu` rákötése** (a Railwayn: a szolgáltatás → Settings → Networking →
+  Custom Domain, és a megadott CNAME a domain-szolgáltatónál). Addig a generált
+  `*.up.railway.app` cím elég. A rákötés után az `ELLARESEARCH_ALAP`-ot is át kell állítani.
+- **A regisztráció átállítása az ÉLES portálra** (l. „A telepítés" ⚠-ját) — ez a nyilvánossá tétel
+  előfeltétele.
 - **Sitemap** (csak akkor lesz értelme, ha az oldal indexelhető).
